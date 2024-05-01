@@ -74,7 +74,7 @@ RUN set -eux; \
 	wget -O go.tgz "$url" --progress=dot:giga; \
 	#echo "$sha256 *go.tgz" | sha256sum -c -; \
 	\
-# https://github.com/golang/go/issues/14739#issuecomment-324767697
+# https://github.com/golang/go/issues/14739#issuecomment-3247676971
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
 # https://www.google.com/linuxrepositories/
 # let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
