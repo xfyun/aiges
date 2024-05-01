@@ -74,7 +74,7 @@ RUN set -eux; \
 # https://github.com/golang/go/issues/14739#issuecomment-324767697
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
     mkdir ~/.gnupg; \
-    echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf;\
+    echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf; \
 # https://www.google.com/linuxrepositories/
 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
 # let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
