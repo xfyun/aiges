@@ -9,41 +9,12 @@ env:
   CUDA_BASE_REPO: cuda-go-python-base
 
 jobs:
-  build-conda-base-image:
-    strategy:
-      matrix:
-        cuda: [  11.2,11.6,11.7 ]
-        python: [ 3.6,3.7,3.8,3.9 ]
-        golang: [ 1.17 ]
-        ubuntu_os: [ 1804 ]
-    runs-on: ubuntu-latest
-    # 项目构建
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          submodules: true
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-        with:
-          username: ${{ secrets.IFLYOPENSOURCE }}
-          password: ${{ secrets.DOCKER_SECRET }}
-
-      - name: Build Docker Image -cuda-base
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./docker/gpu/base/conda/cuda-${{ matrix.cuda }}/Dockerfile
-          builder: ${{ steps.buildx.outputs.name }}
-          build-args: PYTHONVERSION=${{ matrix.python }}
-          push: true
-          tags: ${{ secrets.IFLYOPENSOURCE }}/${{env.CUDA_BASE_REPO}}:conda-${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
   build-base-image:
     strategy:
       matrix:
-        cuda: [11.2,11.6,11.7]
-        python: [ 3.9.13 ]
-        golang: [1.17]
+        cuda: [11.7,12.1]
+        python: [ 3.9.13 ,3.11.7]
+        golang: [1.20]
         ubuntu_os: [1804]
     runs-on: ubuntu-latest
     # 项目构建
