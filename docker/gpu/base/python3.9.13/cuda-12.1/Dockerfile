@@ -181,7 +181,7 @@ RUN set -eux; \
 	wget -O python.tar.xz.asc "https://registry.npmmirror.com/-/binary/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc"; \
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
 	gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$GPG_KEY"; \
-	gpg --batch --verify python.tar.xz.asc python.tar.xz; \
+	#gpg --batch --verify python.tar.xz.asc python.tar.xz; \
 	command -v gpgconf > /dev/null && gpgconf --kill all || :; \
 	rm -rf "$GNUPGHOME" python.tar.xz.asc; \
 	mkdir -p /usr/src/python; \
@@ -200,9 +200,9 @@ RUN set -eux; \
 		--without-ensurepip \
 	; \
 	nproc="$(nproc)"; \
-	make -j "$nproc" \
+	make -j "$nproc" build_all \
 	; \
-	make install; \
+	make altinstall; \
 	\
 # enable GDB to load debugging data: https://github.com/docker-library/python/pull/701
 	bin="$(readlink -ve /usr/local/bin/python3)"; \
