@@ -17,6 +17,7 @@ RUN set -eux; \
         pkg-config \
     ; \
 	rm -rf /var/lib/apt/lists/*
+RUN mkdir ~/.gnupg && echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
 
 ENV PATH /usr/local/go/bin:$PATH
 RUN set -eux; \
