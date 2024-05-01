@@ -6,6 +6,7 @@ ENV GOLANG_VERSION 1.17.11
 # Setup Go
 # https://github.com/docker-library/golang/blob/master/1.17/bullseye/Dockerfile
 # install cgo-related dependencies
+
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
@@ -15,6 +16,7 @@ RUN set -eux; \
 		make \
     	wget \
         pkg-config \
+
     ; \
 	rm -rf /var/lib/apt/lists/*
 
