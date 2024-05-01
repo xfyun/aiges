@@ -34,19 +34,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./docker/gpu/base/python3.9/cuda-${{ matrix.cuda }}/Dockerfile
+          file: ./docker/gpu/base/python${{ matrix.python }}/cuda-${{ matrix.cuda }}/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.IFLYOPENSOURCE }}/${{env.CUDA_BASE_REPO}}:${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
 
 
-
-      - name: Py311 Build Docker Image -cuda-base
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./docker/gpu/base/python3.11/cuda-${{ matrix.cuda }}/Dockerfile
-          builder: ${{ steps.buildx.outputs.name }}
-          push: true
-          tags: ${{ secrets.IFLYOPENSOURCE }}/${{env.CUDA_BASE_REPO}}:${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
 
