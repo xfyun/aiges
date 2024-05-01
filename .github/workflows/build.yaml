@@ -19,9 +19,9 @@ jobs:
   aiges-building:
     strategy:
       matrix:
-        cuda: [ 11.2,11.6,11.7]
-        python: [ 3.9.13 ]
-        golang: [1.18]
+        cuda: [ 12.1,11.7]
+        python: [ 3.9.13,3.11.7 ]
+        golang: [1.20]
         ubuntu_os: [1804]
     runs-on: ubuntu-latest
     # 项目构建
