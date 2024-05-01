@@ -1,8 +1,8 @@
-FROM nvidia/cuda:12.1.0-devel-ubuntu18.04
+FROM nvidia/cuda:11.7.1-devel-ubuntu18.04
 
 ENV TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive
-ENV GOLANG_VERSION 1.21
+ENV GOLANG_VERSION 1.20
 ENV PYTHON_VERSION 3.11.7
 
 # Setup Go
