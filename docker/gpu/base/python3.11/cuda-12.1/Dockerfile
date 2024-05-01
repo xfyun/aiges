@@ -19,7 +19,7 @@ RUN set -eux; \
         pkg-config \
     ; \
 	rm -rf /var/lib/apt/lists/*
-
+RUN echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
 ENV PATH /usr/local/go/bin:$PATH
 RUN set -eux; \
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
