@@ -26,33 +26,33 @@ RUN set -eux; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz'; \
+			url='https://dl.google.com/go/go1.20.linux-amd64.tar.gz'; \
 			sha256='d69a4fe2694f795d8e525c72b497ededc209cb7185f4c3b62d7a98dd6227b3fe'; \
 			;; \
 		'armel') \
 			export GOARCH='arm' GOARM='5' GOOS='linux'; \
 			;; \
 		'armhf') \
-			url='https://dl.google.com/go/go${GOLANG_VERSION}.linux-armv6l.tar.gz'; \
+			url='https://dl.google.com/go/go1.20.linux-armv6l.tar.gz'; \
 			sha256='56fb4a344bfe01427398083b3e82018fcde1f168a94e9df9820010b29e558f27'; \
 			;; \
 		'arm64') \
-			url='https://dl.google.com/go/go${GOLANG_VERSION}.linux-arm64.tar.gz'; \
+			url='https://dl.google.com/go/go1.20.linux-arm64.tar.gz'; \
 			sha256='adefa7412c6798f9cad02d1e8336fc2242f5bade30c5b32781759181e01961b7'; \
 			;; \
 		'i386') \
-			url='https://dl.google.com/go/go${GOLANG_VERSION}.linux-386.tar.gz'; \
+			url='https://dl.google.com/go/go1.20.linux-386.tar.gz'; \
 			sha256='8e43b4c63dda0612df0e1ed3cf8bed566fe8ae88082a46343c40be76a61371e4'; \
 			;; \
 		'mips64el') \
 			export GOARCH='mips64le' GOOS='linux'; \
 			;; \
 		'ppc64el') \
-			url='https://dl.google.com/go/go${GOLANG_VERSION}.linux-ppc64le.tar.gz'; \
+			url='https://dl.google.com/go/go1.20.linux-ppc64le.tar.gz'; \
 			sha256='013624fc1964d576f314117f2f3b6a6a8f3d32f0ec8f55fa5962664537a34180'; \
 			;; \
 		's390x') \
-			url='https://dl.google.com/go/go${GOLANG_VERSION}.linux-s390x.tar.gz'; \
+			url='https://dl.google.com/go/go1.20.linux-s390x.tar.gz'; \
 			sha256='0202a0b2ffaa9bdf1f2480789c2009ba6fde597e1f1c6d4cfb9559bb1964a39c'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
@@ -61,7 +61,7 @@ RUN set -eux; \
 	if [ -z "$url" ]; then \
 # https://github.com/golang/go/issues/38536#issuecomment-616897960
 		build=1; \
-		url='https://dl.google.com/go/go${GOLANG_VERSION}.src.tar.gz'; \
+		url='https://dl.google.com/go/go1.20.src.tar.gz'; \
 		sha256='ac2649a65944c6a5abe55054000eee3d77196880da36a3555f62e06540e8eb54'; \
 		echo >&2; \
 		echo >&2 "warning: current architecture ($arch) does not have a compatible Go binary release; will be building from source"; \
