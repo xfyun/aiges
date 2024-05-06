@@ -52,7 +52,7 @@ jobs:
             artifacts.iflytek.com/docker-private/atp/${{env.CUDA_BASE_REPO}}:${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
 
       - name: push
-        run:
+        run: |
           docker push docker.io/${{ secrets.IFLYOPENSOURCE }}/${{env.CUDA_BASE_REPO}}:${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
           docker push artifacts.iflytek.com/docker-private/atp/${{env.CUDA_BASE_REPO}}:${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
 
