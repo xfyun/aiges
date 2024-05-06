@@ -41,6 +41,8 @@ jobs:
       - name: Py39 Build Docker Image -cuda-base
         uses: docker/build-push-action@v5
         with:
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
           context: .
           file: ./docker/gpu/base/python${{ matrix.python }}/cuda-${{ matrix.cuda }}/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}

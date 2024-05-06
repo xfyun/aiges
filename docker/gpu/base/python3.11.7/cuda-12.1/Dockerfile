@@ -205,7 +205,7 @@ RUN set -eux; \
 	; \
 	make install; \
 	\
-# enable GDB to load debugging data: https://github.com/docker-library/python/pull/701
+# enable GDB to load debugging data: https://github.com/docker-library/python/pull/701 \
 	bin="$(readlink -ve /usr/local/bin/python3)"; \
 	dir="$(dirname "$bin")"; \
 	mkdir -p "/usr/share/gdb/auto-load/$dir"; \
@@ -264,5 +264,6 @@ RUN set -eux; \
 	rm -f get-pip.py; \
 	\
 	pip --version
+
 
 CMD ["python3"]
