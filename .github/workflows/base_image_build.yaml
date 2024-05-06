@@ -46,10 +46,14 @@ jobs:
           context: .
           file: ./docker/gpu/base/python${{ matrix.python }}/cuda-${{ matrix.cuda }}/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
-          push: true
+          push: false
           tags: |
             docker.io/${{ secrets.IFLYOPENSOURCE }}/${{env.CUDA_BASE_REPO}}:${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
             artifacts.iflytek.com/docker-private/atp/${{env.CUDA_BASE_REPO}}:${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
 
+      - name: push
+        run:
+          docker push docker.io/${{ secrets.IFLYOPENSOURCE }}/${{env.CUDA_BASE_REPO}}:${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
+          docker push artifacts.iflytek.com/docker-private/atp/${{env.CUDA_BASE_REPO}}:${{ matrix.cuda }}-${{ matrix.golang }}-${{ matrix.python }}-ubuntu${{ matrix.ubuntu_os }}
 
 
