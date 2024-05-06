@@ -201,9 +201,9 @@ RUN set -eux; \
 		--without-ensurepip \
 	; \
 	nproc="$(nproc)"; \
-	make -j "$nproc" build_all \
+	make -j "$nproc" \
 	; \
-	make altinstall; \
+	make install; \
 	\
 # enable GDB to load debugging data: https://github.com/docker-library/python/pull/701
 	bin="$(readlink -ve /usr/local/bin/python3)"; \
