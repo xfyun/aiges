@@ -2,20 +2,22 @@
 name: Build Base Image
 on:
   push:
-    paths:
-      - "docker/gpu/base/**"
-
+    branches:
+      - main
+      - grpc
 env:
   CUDA_BASE_REPO: cuda-go-python-base
 
 jobs:
   build-base-image:
+    if: startsWith(github.event.commits[0].message, 'build_base')
     strategy:
       matrix:
         cuda: [11.7,12.1]
         python: [ 3.9.13 ,3.11.7]
         golang: [1.20]
         ubuntu_os: [1804]
+
     runs-on: self-hosted
     # 项目构建
     steps:
@@ -41,8 +43,6 @@ jobs:
       - name: Py39 Build Docker Image -cuda-base
         uses: docker/build-push-action@v4
         with:
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
           context: .
           file: ./docker/gpu/base/python${{ matrix.python }}/cuda-${{ matrix.cuda }}/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
